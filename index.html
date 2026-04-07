@@ -725,6 +725,204 @@
       line-height: 1.3;
     }
 
+    /* hover overlay */
+    .produto-card {
+      position: relative;
+    }
+    .produto-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(201,107,122,0.92), rgba(28,53,87,0.92));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 12px;
+    }
+    .produto-card:hover .produto-overlay { opacity: 1; }
+    .produto-overlay span {
+      font-family: var(--ff-titulo);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--branco);
+      font-weight: 600;
+    }
+    .produto-overlay a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--branco);
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 100px;
+      padding: 0.5rem 1rem;
+      transition: background 0.25s;
+    }
+    .produto-overlay a:hover { background: rgba(255,255,255,0.3); }
+
+    /* ══════════════════════════════════
+       NÚMEROS / CONQUISTAS
+    ══════════════════════════════════ */
+    #numeros {
+      background:
+        linear-gradient(135deg, rgba(28,53,87,0.96) 0%, rgba(201,107,122,0.88) 100%),
+        url('images/bg-hero.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
+      padding: 88px 0;
+      text-align: center;
+    }
+    .numeros-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .numero-item {
+      padding: 32px 24px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+    }
+    .numero-item:last-child { border-right: none; }
+    .numero-item i {
+      font-size: 1.8rem;
+      color: var(--dourado-claro);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .numero-valor {
+      font-family: var(--ff-titulo);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700;
+      color: var(--branco);
+      line-height: 1;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .numero-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+
+    /* ══════════════════════════════════
+       FAQ
+    ══════════════════════════════════ */
+    #faq {
+      background:
+        linear-gradient(rgba(249,237,240,0.94), rgba(249,237,240,0.94)),
+        url('images/bg-contato2.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
+    }
+    .faq-lista { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--tr), box-shadow var(--tr);
+    }
+    .faq-item.open { border-color: var(--rosa); box-shadow: 0 6px 24px rgba(201,107,122,0.12); }
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .faq-btn span {
+      font-family: var(--ff-titulo);
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--azul);
+      line-height: 1.3;
+      flex: 1;
+    }
+    .faq-btn i {
+      font-size: 0.85rem;
+      color: var(--rosa);
+      transition: transform 0.35s ease;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-btn i { transform: rotate(180deg); }
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .faq-body p {
+      padding: 0 24px 20px;
+      font-size: 0.9rem;
+      color: var(--texto-leve);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════════
+       LOADING SCREEN
+    ══════════════════════════════════ */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: linear-gradient(135deg, var(--rosa-palido), var(--rosa-claro));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden { opacity: 0; visibility: hidden; }
+    .loading-logo img {
+      height: 90px;
+      animation: loadingPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes loadingPulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50%       { transform: scale(1.07); opacity: 1; }
+    }
+    .loading-bar-wrap {
+      width: 160px;
+      height: 2px;
+      background: rgba(201,107,122,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loading-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rosa), var(--dourado));
+      border-radius: 2px;
+      animation: loadingFill 1.8s ease forwards;
+    }
+    @keyframes loadingFill {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+    .loading-text {
+      font-family: var(--ff-corpo);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rosa);
+      opacity: 0.7;
+    }
+
     /* ══════════════════════════════════
        CTA BANNER
     ══════════════════════════════════ */
@@ -1002,7 +1200,8 @@
     @media (max-width: 1023px) {
       /* desativa parallax em mobile/tablet */
       #hero, #diferenciais, #sobre, #mvv,
-      #valores, #produtos, #cta, #contato {
+      #valores, #numeros, #produtos, #cta,
+      #faq, #contato {
         background-attachment: scroll, scroll;
       }
 
@@ -1044,6 +1243,12 @@
 
       /* typewriter: libera quebra de linha */
       #hero-tagline { white-space: normal; border-right: none; overflow: visible; }
+
+      /* números → 2 colunas */
+      .numeros-grid { grid-template-columns: repeat(2, 1fr); }
+      .numero-item:nth-child(2) { border-right: none; }
+      .numero-item:nth-child(3),
+      .numero-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.12); }
     }
 
     /* ── TABLET PEQUENO ── */
@@ -1067,6 +1272,14 @@
 
       /* mvv → 1 coluna */
       .mvv-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      /* números → 2 colunas mantidas, padding reduzido */
+      .numero-item { padding: 24px 16px; }
+      .numero-valor { font-size: clamp(2.2rem, 8vw, 3rem); }
+
+      /* faq */
+      .faq-btn span { font-size: 1rem; }
+      .faq-btn { padding: 16px 18px; }
       .mvv-card { padding: 32px 24px; }
 
       /* valores → 1 coluna */
@@ -1170,6 +1383,9 @@
       .dif-item { padding: 18px 10px; }
     }
 
+      /* números → 1 coluna em mobile pequeno */
+      .numeros-grid { grid-template-columns: repeat(2, 1fr); }
+
     /* ── MOBILE MÍNIMO ABSOLUTO ── */
     @media (max-width: 320px) {
       .container { padding: 0 0.75rem; }
@@ -1178,6 +1394,9 @@
       .dif-item { border-right: none; border-bottom: 1px solid var(--borda); }
       .hero-btns .btn { max-width: 100%; }
       .mvv-card { padding: 18px 12px; }
+      .numeros-grid { grid-template-columns: 1fr; }
+      .numero-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .numero-item:last-child { border-bottom: none; }
     }
 
     /* ── LANDSCAPE BAIXO ── */
@@ -1265,6 +1484,17 @@
 </head>
 <body>
 
+  <!-- Loading screen -->
+  <div id="loading-screen" role="status" aria-label="Carregando...">
+    <div class="loading-logo">
+      <img src="images/logo.png" alt="Célia Produtos de Beleza">
+    </div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar"></div>
+    </div>
+    <p class="loading-text">Carregando</p>
+  </div>
+
   <!-- Barra de progresso de scroll -->
   <div id="scroll-progress"></div>
 
@@ -1277,7 +1507,7 @@
       <nav class="nav-links" aria-label="Navegação principal">
         <a href="#sobre">Sobre</a>
         <a href="#produtos">Produtos</a>
-        <a href="#mvv">Missão</a>
+        <a href="#faq">FAQ</a>
         <a href="#contato">Contato</a>
         <a href="https://wa.me/5519988279540" target="_blank" rel="noopener noreferrer" class="nav-cta">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp
@@ -1293,7 +1523,7 @@
   <nav id="navMenu" aria-label="Menu mobile">
     <a href="#sobre">Sobre</a>
     <a href="#produtos">Produtos</a>
-    <a href="#mvv">Missão</a>
+    <a href="#faq">FAQ</a>
     <a href="#contato">Contato</a>
     <a href="https://wa.me/5519988279540" target="_blank" rel="noopener noreferrer" class="nav-cta">
       <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
@@ -1460,6 +1690,34 @@
     </div>
   </section>
 
+  <!-- ══════ NÚMEROS ══════ -->
+  <section id="numeros" aria-label="Nossos números">
+    <div class="container">
+      <div class="numeros-grid">
+        <div class="numero-item fade-scale d1">
+          <i class="fa-solid fa-calendar-check"></i>
+          <strong class="numero-valor"><span class="count-num" data-target="15">0</span>+</strong>
+          <span class="numero-label">Anos no mercado</span>
+        </div>
+        <div class="numero-item fade-scale d2">
+          <i class="fa-solid fa-users"></i>
+          <strong class="numero-valor"><span class="count-num" data-target="500">0</span>+</strong>
+          <span class="numero-label">Clientes atendidas</span>
+        </div>
+        <div class="numero-item fade-scale d3">
+          <i class="fa-solid fa-box-open"></i>
+          <strong class="numero-valor"><span class="count-num" data-target="10">0</span>+</strong>
+          <span class="numero-label">Produtos na linha</span>
+        </div>
+        <div class="numero-item fade-scale d4">
+          <i class="fa-solid fa-star"></i>
+          <strong class="numero-valor"><span class="count-num" data-target="5">0</span></strong>
+          <span class="numero-label">Estrelas de avaliação</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════ PRODUTOS ══════ -->
   <section id="produtos">
     <div class="container">
@@ -1472,42 +1730,82 @@
         <div class="produto-card fade-scale d1">
           <div class="produto-icon"><i class="fa-solid fa-droplet"></i></div>
           <h3>Hidratante corporal</h3>
+          <div class="produto-overlay">
+            <span>Hidratante corporal</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Hidratante%20Corporal!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d2">
           <div class="produto-icon"><i class="fa-solid fa-sun"></i></div>
           <h3>Protetor solar</h3>
+          <div class="produto-overlay">
+            <span>Protetor solar</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Protetor%20Solar!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d3">
           <div class="produto-icon"><i class="fa-solid fa-soap"></i></div>
           <h3>Sabonete em barra</h3>
+          <div class="produto-overlay">
+            <span>Sabonete em barra</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Sabonete!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d4">
           <div class="produto-icon"><i class="fa-solid fa-pump-soap"></i></div>
           <h3>Shampoo</h3>
+          <div class="produto-overlay">
+            <span>Shampoo</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Shampoo!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d5">
           <div class="produto-icon"><i class="fa-solid fa-bottle-water"></i></div>
           <h3>Condicionador</h3>
+          <div class="produto-overlay">
+            <span>Condicionador</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Condicionador!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d1">
           <div class="produto-icon"><i class="fa-solid fa-jar"></i></div>
           <h3>Creme de cabelo</h3>
+          <div class="produto-overlay">
+            <span>Creme de cabelo</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Creme%20de%20Cabelo!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d2">
           <div class="produto-icon"><i class="fa-solid fa-face-smile"></i></div>
           <h3>Sabonete facial</h3>
+          <div class="produto-overlay">
+            <span>Sabonete facial</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Sabonete%20Facial!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d3">
           <div class="produto-icon"><i class="fa-solid fa-palette"></i></div>
           <h3>Maquiagem</h3>
+          <div class="produto-overlay">
+            <span>Maquiagem</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20Maquiagem!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d4">
           <div class="produto-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
           <h3>Perfumes</h3>
+          <div class="produto-overlay">
+            <span>Perfumes</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20Perfumes!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
         <div class="produto-card fade-scale d5">
           <div class="produto-icon"><i class="fa-solid fa-ring"></i></div>
           <h3>Semijoias</h3>
+          <div class="produto-overlay">
+            <span>Semijoias</span>
+            <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20as%20Semijoias!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1527,6 +1825,73 @@
           <a href="https://www.instagram.com/celiaconsultoradebeauty/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-branco">
             <i class="fa-brands fa-instagram"></i> Ver no Instagram
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ FAQ ══════ -->
+  <section id="faq">
+    <div class="container">
+      <span class="section-tag">Dúvidas</span>
+      <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+      <div class="divisor"><span></span><i class="fa-solid fa-rose"></i><span></span></div>
+      <p class="section-desc">Tire suas dúvidas sobre produtos, entrega e atendimento.</p>
+
+      <div class="faq-lista">
+        <div class="faq-item fade-up d1">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Vocês fazem entrega?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-body">
+            <p>Sim! Trabalhamos com entrega em domicílio na região. Entre em contato pelo WhatsApp para verificar disponibilidade e combinar a melhor forma de receber seus produtos.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up d2">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Quais formas de pagamento são aceitas?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-body">
+            <p>Aceitamos dinheiro, PIX, cartão de débito e cartão de crédito. Para mais informações sobre parcelamento, consulte pelo WhatsApp antes de fechar o pedido.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up d3">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Como faço para comprar?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-body">
+            <p>É simples! Fale conosco pelo WhatsApp, escolha os produtos que deseja e combine a entrega ou a retirada. Respondemos rapidamente e com atenção personalizada.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up d4">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Os produtos têm garantia de qualidade?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-body">
+            <p>Todos os nossos produtos são selecionados com critério e possuem registro na ANVISA. Trabalhamos apenas com marcas confiáveis para garantir segurança e eficácia para sua pele e cabelo.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up d5">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Vocês indicam o produto ideal para mim?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-body">
+            <p>Sim! Com 15 anos de experiência, a Célia oferece atendimento personalizado para entender seu tipo de pele, cabelo e necessidades — e recomendar os produtos mais adequados para você.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up d6">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Qual o horário de atendimento?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-body">
+            <p>Atendemos de segunda a sábado, das 8h às 18h. Fora desse horário, você pode nos enviar uma mensagem no WhatsApp e retornaremos assim que possível.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1642,6 +2007,34 @@
   </button>
 
   <script>
+    /* ── LOADING SCREEN ── */
+    const loadingScreen = document.getElementById('loading-screen');
+    window.addEventListener('load', () => {
+      setTimeout(() => loadingScreen.classList.add('hidden'), 1800);
+    });
+
+    /* ── FAQ ACCORDION ── */
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const body = item.querySelector('.faq-body');
+        const isOpen = item.classList.contains('open');
+
+        // fecha todos
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-body').style.maxHeight = null;
+          el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
     /* ── HEADER SCROLL ── */
     const header = document.getElementById('header');
     const scrollTop = document.getElementById('scrollTop');
