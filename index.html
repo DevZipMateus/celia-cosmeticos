@@ -974,89 +974,217 @@
     .d6 { transition-delay: 0.40s; }
 
     /* ══════════════════════════════════
-       RESPONSIVIDADE
+       RESPONSIVIDADE  320px → 4K+
     ══════════════════════════════════ */
-    @media (max-width: 1199px) {
-      .produtos-grid { grid-template-columns: repeat(4, 1fr); }
-      .sobre-grid { gap: 48px; }
+
+    /* ── WIDESCREEN / 4K ── */
+    @media (min-width: 1920px) {
+      .container { max-width: 1400px; }
+      .section-title { font-size: 4rem; }
+      .hero-content h1 { font-size: 8rem; }
+      .hero-content h2 { font-size: 1.25rem; }
     }
+
+    /* ── DESKTOP LARGO ── */
+    @media (max-width: 1399px) and (min-width: 1200px) {
+      .sobre-grid { gap: 56px; }
+    }
+
+    /* ── LAPTOP / TABLET PAISAGEM ── */
+    @media (max-width: 1199px) {
+      .container { max-width: 960px; }
+      .produtos-grid { grid-template-columns: repeat(4, 1fr); }
+      .sobre-grid { gap: 40px; }
+      .contato-grid { gap: 40px; }
+    }
+
+    /* ── TABLET ── */
     @media (max-width: 1023px) {
-      #hero         { background-attachment: scroll, scroll; }
-      #diferenciais { background-attachment: scroll, scroll; }
-      #sobre        { background-attachment: scroll, scroll; }
-      #mvv          { background-attachment: scroll, scroll; }
-      #valores      { background-attachment: scroll, scroll; }
-      #produtos     { background-attachment: scroll, scroll; }
-      #cta          { background-attachment: scroll, scroll; }
-      #contato      { background-attachment: scroll, scroll; }
+      /* desativa parallax em mobile/tablet */
+      #hero, #diferenciais, #sobre, #mvv,
+      #valores, #produtos, #cta, #contato {
+        background-attachment: scroll, scroll;
+      }
+
+      /* menu mobile */
       nav .nav-links { display: none; }
       .hamburger { display: flex; }
+
+      /* seções */
+      section { padding: 80px 0; }
+      .section-desc { margin-bottom: 40px; }
+
+      /* diferenciais → 2 colunas */
       .dif-grid { grid-template-columns: repeat(2, 1fr); }
       .dif-item:nth-child(2) { border-right: none; }
-      .dif-item:nth-child(3), .dif-item:nth-child(4) { border-top: 1px solid var(--borda); }
-      .sobre-grid { grid-template-columns: 1fr; }
+      .dif-item:nth-child(3),
+      .dif-item:nth-child(4) { border-top: 1px solid var(--borda); }
+
+      /* sobre → 1 coluna */
+      .sobre-grid { grid-template-columns: 1fr; gap: 32px; }
+      .sobre-visual { max-width: 540px; margin: 0 auto; }
       .sobre-text .section-tag { margin: 0 auto 12px; }
       .sobre-text h2, .sobre-text p { text-align: center; }
       .sobre-text .btn { display: block; width: fit-content; margin: 20px auto 0; }
-      .sobre-visual { max-width: 500px; margin: 0 auto; }
-      .mvv-grid { grid-template-columns: 1fr 1fr; }
-      .valores-lista { grid-template-columns: 1fr 1fr; }
+
+      /* mvv → 2 colunas */
+      .mvv-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* valores → 2 colunas */
+      .valores-lista { grid-template-columns: repeat(2, 1fr); }
+
+      /* produtos → 3 colunas */
       .produtos-grid { grid-template-columns: repeat(3, 1fr); }
-      .contato-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      /* contato → 1 coluna */
+      .contato-grid { grid-template-columns: 1fr; gap: 36px; }
       .contato-text .section-tag { margin: 0 auto 12px; }
       .contato-text h2, .contato-text > p { text-align: center; }
-      .contato-itens { max-width: 420px; margin: 0 auto; }
+      .contato-itens { max-width: 440px; margin: 0 auto; }
+
+      /* typewriter: libera quebra de linha */
+      #hero-tagline { white-space: normal; border-right: none; overflow: visible; }
     }
+
+    /* ── TABLET PEQUENO ── */
+    @media (max-width: 899px) {
+      .container { padding: 0 1.5rem; }
+      .sobre-visual img { height: 420px; }
+      .sobre-visual { max-width: 480px; }
+      .mvv-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .produtos-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .contato-cta-box { padding: 36px 28px; }
+    }
+
+    /* ── MOBILE LARGO ── */
     @media (max-width: 767px) {
       :root { --header-h: 66px; }
-      section { padding: 68px 0; }
+      section { padding: 64px 0; }
       .container { padding: 0 1.25rem; }
       .logo-wrap img { height: 48px; }
       .section-title { font-size: clamp(1.9rem, 6vw, 2.6rem); }
-      .mvv-grid { grid-template-columns: 1fr; }
-      .valores-lista { grid-template-columns: 1fr; }
-      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
-      .sobre-visual img { height: 340px; }
-      .footer-inner { flex-direction: column; text-align: center; }
+      .section-desc { font-size: 0.93rem; margin-bottom: 32px; }
+
+      /* mvv → 1 coluna */
+      .mvv-grid { grid-template-columns: 1fr; gap: 16px; }
+      .mvv-card { padding: 32px 24px; }
+
+      /* valores → 1 coluna */
+      .valores-lista { grid-template-columns: 1fr; gap: 12px; }
+
+      /* produtos → 2 colunas */
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+      /* sobre */
+      .sobre-visual img { height: 320px; }
+      .sobre-visual { max-width: 100%; }
+
+      /* footer */
+      .footer-inner { flex-direction: column; align-items: center; gap: 16px; text-align: center; }
       .footer-logo { margin: 0 auto; }
-      .footer-info { text-align: center; }
+      .footer-copy { text-align: center; padding: 0 1rem 20px; }
     }
+
+    /* ── MOBILE ── */
     @media (max-width: 599px) {
       section { padding: 52px 0; }
-      .dif-grid { grid-template-columns: 1fr 1fr; }
-      .hero-content h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
-      .contato-cta-box { padding: 28px 20px; }
-      .sobre-badge { bottom: 16px; right: 16px; padding: 12px 16px; }
+      .container { padding: 0 1.1rem; }
+
+      /* hero */
+      .hero-eyebrow { font-size: 0.65rem; letter-spacing: 2.5px; }
+      .hero-content h1 { font-size: clamp(2.6rem, 12vw, 3.8rem); }
+      .hero-content h2 { font-size: 0.88rem; max-width: 100%; }
+      .hero-logo img { height: 52px; }
+
+      /* diferenciais */
+      .dif-grid { grid-template-columns: repeat(2, 1fr); }
+      .dif-item { padding: 22px 14px; }
+      .dif-item i { font-size: 1.3rem; }
+
+      /* sobre badge */
+      .sobre-badge { bottom: 14px; right: 14px; padding: 12px 16px; }
       .sobre-badge strong { font-size: 1.8rem; }
+      .sobre-visual img { height: 280px; }
+
+      /* contato */
+      .contato-cta-box { padding: 28px 20px; }
+
+      /* produtos */
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .produto-card { padding: 24px 12px 18px; }
     }
+
+    /* ── MOBILE PEQUENO ── */
     @media (max-width: 479px) {
       :root { --header-h: 60px; }
       section { padding: 44px 0; }
       .container { padding: 0 1rem; }
-      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* hero */
+      .hero-content h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); letter-spacing: -0.5px; }
       .hero-btns { flex-direction: column; align-items: center; }
       .hero-btns .btn { width: 100%; max-width: 300px; justify-content: center; }
-      .section-title { font-size: 1.8rem; }
-      .sobre-visual img { height: 260px; }
-      .mvv-card { padding: 28px 20px; }
-      .valor-card { padding: 20px 16px; }
-      .whatsapp-float { bottom: 18px; right: 18px; width: 50px; height: 50px; font-size: 1.4rem; }
-      .scroll-top { bottom: 18px; left: 18px; }
+
+      /* textos */
+      .section-title { font-size: 1.85rem; }
+      .section-desc { font-size: 0.9rem; }
+
+      /* sobre */
+      .sobre-visual img { height: 240px; }
+      .sobre-text h2 { font-size: 1.7rem; }
+
+      /* mvv */
+      .mvv-card { padding: 24px 18px; }
+      .mvv-card h3 { font-size: 1.35rem; }
+
+      /* valores */
+      .valor-card { padding: 18px 14px; gap: 12px; }
+      .valor-icon { width: 40px; height: 40px; font-size: 0.95rem; }
+
+      /* produtos */
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      .produto-icon { width: 50px; height: 50px; font-size: 1.1rem; }
+
+      /* contato */
+      .contato-cta-box { padding: 24px 16px; }
+      .cta-titulo { font-size: 1.5rem; }
+
+      /* flutuantes */
+      .whatsapp-float { bottom: 16px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem; }
+      .scroll-top { bottom: 16px; left: 16px; width: 38px; height: 38px; }
     }
+
+    /* ── MOBILE MÍNIMO ── */
     @media (max-width: 360px) {
       .container { padding: 0 0.875rem; }
       .logo-wrap img { height: 40px; }
-      .btn { font-size: 0.78rem; padding: 0.75rem 1.4rem; }
-      .section-title { font-size: 1.6rem; }
-      .produtos-grid { grid-template-columns: 1fr 1fr; }
+      .btn { font-size: 0.78rem; padding: 0.75rem 1.3rem; }
+      .section-title { font-size: 1.65rem; }
+      .hero-content h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .hero-eyebrow { gap: 6px; letter-spacing: 2px; }
+      .mvv-card { padding: 20px 14px; }
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .produto-card { padding: 20px 8px 16px; }
+      .sobre-badge { bottom: 10px; right: 10px; padding: 10px 12px; }
+      .sobre-badge strong { font-size: 1.6rem; }
+      .dif-item { padding: 18px 10px; }
     }
+
+    /* ── MOBILE MÍNIMO ABSOLUTO ── */
     @media (max-width: 320px) {
       .container { padding: 0 0.75rem; }
+      .section-title { font-size: 1.5rem; }
       .dif-grid { grid-template-columns: 1fr; }
       .dif-item { border-right: none; border-bottom: 1px solid var(--borda); }
+      .hero-btns .btn { max-width: 100%; }
+      .mvv-card { padding: 18px 12px; }
     }
+
+    /* ── LANDSCAPE BAIXO ── */
     @media (max-height: 500px) and (orientation: landscape) {
-      #hero { min-height: auto; padding: calc(var(--header-h) + 24px) 0 32px; }
+      #hero { min-height: auto; padding: calc(var(--header-h) + 20px) 0 28px; }
+      .hero-logo { display: none; }
+      .hero-content h1 { font-size: clamp(2rem, 5vh, 3rem); }
     }
     /* ══════════════════════════════════
        BARRA DE PROGRESSO DE SCROLL
