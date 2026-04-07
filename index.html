@@ -441,7 +441,10 @@
        DIFERENCIAIS (faixa)
     ══════════════════════════════════ */
     #diferenciais {
-      background: var(--rosa-palido);
+      background:
+        linear-gradient(rgba(253,246,248,0.93), rgba(253,246,248,0.93)),
+        url('images/bg-diferenciais.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
       padding: 56px 0;
       border-top: 1px solid var(--borda);
       border-bottom: 1px solid var(--borda);
@@ -482,7 +485,10 @@
        SOBRE
     ══════════════════════════════════ */
     #sobre {
-      background: var(--branco);
+      background:
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+        url('images/bg-sobre2.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
     }
     .sobre-grid {
       display: grid;
@@ -618,7 +624,10 @@
        VALORES
     ══════════════════════════════════ */
     #valores {
-      background: var(--rosa-palido);
+      background:
+        linear-gradient(rgba(249,237,240,0.91), rgba(249,237,240,0.91)),
+        url('images/bg-valores.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
     }
     .valores-lista {
       display: grid;
@@ -664,7 +673,10 @@
        PRODUTOS
     ══════════════════════════════════ */
     #produtos {
-      background: var(--branco);
+      background:
+        linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
+        url('images/bg-produtos2.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
     }
     .produtos-grid {
       display: grid;
@@ -747,7 +759,10 @@
        CONTATO
     ══════════════════════════════════ */
     #contato {
-      background: var(--rosa-palido);
+      background:
+        linear-gradient(rgba(253,246,248,0.92), rgba(253,246,248,0.92)),
+        url('images/bg-contato2.jpg') center / cover no-repeat;
+      background-attachment: scroll, fixed;
     }
     .contato-grid {
       display: grid;
@@ -966,8 +981,14 @@
       .sobre-grid { gap: 48px; }
     }
     @media (max-width: 1023px) {
-      #mvv { background-attachment: scroll, scroll; }
-      #cta { background-attachment: scroll, scroll; }
+      #hero         { background-attachment: scroll, scroll; }
+      #diferenciais { background-attachment: scroll, scroll; }
+      #sobre        { background-attachment: scroll, scroll; }
+      #mvv          { background-attachment: scroll, scroll; }
+      #valores      { background-attachment: scroll, scroll; }
+      #produtos     { background-attachment: scroll, scroll; }
+      #cta          { background-attachment: scroll, scroll; }
+      #contato      { background-attachment: scroll, scroll; }
       nav .nav-links { display: none; }
       .hamburger { display: flex; }
       .dif-grid { grid-template-columns: repeat(2, 1fr); }
