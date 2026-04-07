@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://celiacosmeticos.com.br/sitemap.xml
