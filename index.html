@@ -1058,9 +1058,77 @@
     @media (max-height: 500px) and (orientation: landscape) {
       #hero { min-height: auto; padding: calc(var(--header-h) + 24px) 0 32px; }
     }
+    /* ══════════════════════════════════
+       BARRA DE PROGRESSO DE SCROLL
+    ══════════════════════════════════ */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--rosa), var(--dourado), var(--rosa));
+      z-index: 2000;
+      transition: width 0.1s linear;
+    }
+
+    /* ══════════════════════════════════
+       SHIMMER DOURADO — títulos e divisor
+    ══════════════════════════════════ */
+    @keyframes shimmerGold {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .divisor i, .hero-divisor i {
+      background: linear-gradient(90deg, var(--dourado), #fff6d0, var(--dourado), #c9a25a);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerGold 3s linear infinite;
+    }
+
+    /* ══════════════════════════════════
+       TYPEWRITER — hero h2
+    ══════════════════════════════════ */
+    #hero-tagline {
+      border-right: 2px solid rgba(255,255,255,0.6);
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      max-width: 520px;
+    }
+    #hero-tagline.typed-done { border-right: none; }
+
+    /* ══════════════════════════════════
+       TILT 3D — mvv-card, produto-card
+    ══════════════════════════════════ */
+    .tilt-card { will-change: transform; }
+
+    /* ══════════════════════════════════
+       CONTADOR — sobre-badge
+    ══════════════════════════════════ */
+    .count-num { display: inline; }
+
+    /* ══════════════════════════════════
+       SPARKLE CURSOR — hero
+    ══════════════════════════════════ */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      border-radius: 50%;
+      animation: sparkleFade 0.6s ease forwards;
+    }
+    @keyframes sparkleFade {
+      0%   { transform: scale(0) rotate(0deg); opacity: 1; }
+      100% { transform: scale(1.4) rotate(180deg); opacity: 0; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .fade-up, .fade-left, .fade-right, .fade-scale { opacity: 1; transform: none; transition: none; }
       .hero-petal { animation: none; display: none; }
+      #hero-tagline { border-right: none; white-space: normal; overflow: visible; }
+      .divisor i, .hero-divisor i { animation: none; }
     }
     @media (hover: none) {
       .mvv-card, .produto-card, .valor-card { transform: none !important; }
@@ -1068,6 +1136,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Barra de progresso de scroll -->
+  <div id="scroll-progress"></div>
 
   <!-- ══════ HEADER ══════ -->
   <header id="header">
@@ -1126,7 +1197,7 @@
           <i class="fa-solid fa-rose"></i>
           <span></span>
         </div>
-        <h2>15 anos levando beleza, autoestima e cuidado pessoal através de cosméticos de qualidade para cada cliente.</h2>
+        <h2><span id="hero-tagline"></span></h2>
         <div class="hero-btns">
           <a href="#produtos" class="btn btn-rosa">
             <i class="fa-solid fa-sparkles"></i> Ver produtos
@@ -1174,7 +1245,7 @@
         <div class="sobre-visual fade-left">
           <img src="images/bg-contato.jpg" alt="Célia Produtos de Beleza — cosméticos de qualidade" loading="lazy">
           <div class="sobre-badge">
-            <strong>15</strong>
+            <strong><span class="count-num" data-target="15">0</span>+</strong>
             <span>Anos no mercado</span>
           </div>
         </div>
@@ -1205,17 +1276,17 @@
       </div>
 
       <div class="mvv-grid">
-        <div class="mvv-card fade-scale d1">
+        <div class="mvv-card tilt-card fade-scale d1">
           <div class="mvv-icon"><i class="fa-solid fa-bullseye"></i></div>
           <h3>Missão</h3>
           <p>Oferecer produtos cosméticos de qualidade que elevem a autoestima, promovendo beleza, cuidado e confiança para todos os nossos clientes.</p>
         </div>
-        <div class="mvv-card fade-scale d2">
+        <div class="mvv-card tilt-card fade-scale d2">
           <div class="mvv-icon"><i class="fa-solid fa-eye"></i></div>
           <h3>Visão</h3>
           <p>Ser uma marca referência em cosméticos, reconhecida pela qualidade dos produtos, confiança e impacto positivo na vida das pessoas.</p>
         </div>
-        <div class="mvv-card fade-scale d3">
+        <div class="mvv-card tilt-card fade-scale d3">
           <div class="mvv-icon"><i class="fa-solid fa-gem"></i></div>
           <h3>Valores</h3>
           <p>Qualidade · Honestidade · Respeito ao cliente · Compromisso · Autoestima · Inovação · Responsabilidade.</p>
@@ -1503,6 +1574,91 @@
         a.style.color = a.getAttribute('href') === '#' + current ? 'var(--rosa)' : '';
       });
     }, { passive: true });
+
+    /* ── BARRA DE PROGRESSO ── */
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (scrolled / total * 100) + '%';
+    }, { passive: true });
+
+    /* ── TYPEWRITER HERO ── */
+    (function(){
+      const el = document.getElementById('hero-tagline');
+      if (!el) return;
+      const text = '15 anos levando beleza, autoestima e cuidado pessoal através de cosméticos de qualidade para cada cliente.';
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          el.textContent += text[i++];
+          setTimeout(type, i === 1 ? 800 : 32);
+        } else {
+          el.classList.add('typed-done');
+        }
+      }
+      setTimeout(type, 1200);
+    })();
+
+    /* ── CONTADOR NUMÉRICO ── */
+    function animateCounter(el) {
+      const target = +el.dataset.target;
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.round(current);
+      }, 16);
+    }
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count-num[data-target]').forEach(el => counterObserver.observe(el));
+
+    /* ── TILT 3D ── */
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(700px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    /* ── SPARKLE NO CURSOR (hero) ── */
+    (function(){
+      const hero = document.getElementById('hero');
+      if (!hero) return;
+      const colors = ['#C96B7A','#C9A25A','#F9EDF0','#E8C98A','#ffffff'];
+      hero.addEventListener('mousemove', e => {
+        if (Math.random() > 0.35) return;
+        const sp = document.createElement('div');
+        sp.className = 'sparkle';
+        const size = Math.random() * 10 + 5;
+        sp.style.cssText = `
+          left:${e.clientX - size/2}px;
+          top:${e.clientY - size/2}px;
+          width:${size}px;
+          height:${size}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          box-shadow: 0 0 ${size}px ${colors[Math.floor(Math.random()*colors.length)]};
+        `;
+        document.body.appendChild(sp);
+        sp.addEventListener('animationend', () => sp.remove());
+      });
+    })();
   </script>
 </body>
 </html>
