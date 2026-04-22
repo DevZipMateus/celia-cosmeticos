@@ -729,6 +729,72 @@
     .produto-card {
       position: relative;
     }
+
+    /* ══════════════════════════════════
+       VITRINE BANNER — seção produtos
+    ══════════════════════════════════ */
+    .vitrine-banner {
+      margin-top: 48px;
+      background: linear-gradient(135deg, rgba(201,107,122,0.07) 0%, rgba(28,53,87,0.05) 100%);
+      border: 1px solid var(--borda);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .vitrine-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rosa), var(--dourado), var(--rosa));
+    }
+    .vitrine-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .vitrine-banner-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rosa) 0%, var(--rosa-vivo) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--branco);
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(201,107,122,0.35);
+    }
+    .vitrine-banner-text { flex: 1; }
+    .vitrine-banner-text h3 {
+      font-family: var(--ff-titulo);
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--azul);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .vitrine-banner-text h3 span { color: var(--rosa); font-style: normal; }
+    .vitrine-banner-text p {
+      color: var(--texto-leve);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .vitrine-banner-btn { flex-shrink: 0; }
+
+    @media (max-width: 767px) {
+      .vitrine-banner { padding: 28px 24px; }
+      .vitrine-banner-content { flex-direction: column; text-align: center; gap: 20px; }
+      .vitrine-banner-text h3 { text-align: center; }
+      .vitrine-banner-btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+    @media (max-width: 479px) {
+      .vitrine-banner { padding: 24px 16px; }
+      .vitrine-banner-icon { width: 60px; height: 60px; font-size: 1.3rem; }
+    }
     .produto-overlay {
       position: absolute;
       inset: 0;
@@ -1511,6 +1577,7 @@
         <a href="#produtos">Produtos</a>
         <a href="#faq">FAQ</a>
         <a href="#contato">Contato</a>
+        <a href="vitrine.html"><i class="fa-solid fa-store" style="margin-right:5px;font-size:0.8em"></i>Vitrine</a>
         <a href="https://wa.me/5519988279540" target="_blank" rel="noopener noreferrer" class="nav-cta">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp
         </a>
@@ -1527,6 +1594,7 @@
     <a href="#produtos">Produtos</a>
     <a href="#faq">FAQ</a>
     <a href="#contato">Contato</a>
+    <a href="vitrine.html"><i class="fa-solid fa-store" style="margin-right:6px"></i>Vitrine</a>
     <a href="https://wa.me/5519988279540" target="_blank" rel="noopener noreferrer" class="nav-cta">
       <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
     </a>
@@ -1561,6 +1629,9 @@
         <div class="hero-btns">
           <a href="#produtos" class="btn btn-rosa">
             <i class="fa-solid fa-sparkles"></i> Ver produtos
+          </a>
+          <a href="vitrine.html" class="btn btn-outline-branco">
+            <i class="fa-solid fa-store"></i> Ver vitrine
           </a>
           <a href="https://wa.me/5519988279540" target="_blank" rel="noopener noreferrer" class="btn btn-outline-branco">
             <i class="fa-brands fa-whatsapp"></i> Falar conosco
@@ -1808,6 +1879,22 @@
             <span>Semijoias</span>
             <a href="https://wa.me/5519988279540?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20as%20Semijoias!" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar</a>
           </div>
+        </div>
+      </div>
+
+      <!-- Vitrine Banner -->
+      <div class="vitrine-banner fade-up">
+        <div class="vitrine-banner-content">
+          <div class="vitrine-banner-icon">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div class="vitrine-banner-text">
+            <h3>Explore nossa <span>vitrine online</span> completa</h3>
+            <p>Veja todos os produtos disponíveis, preços atualizados e faça seu pedido com praticidade — tudo em um só lugar, direto da nossa loja virtual.</p>
+          </div>
+          <a href="vitrine.html" class="btn btn-rosa vitrine-banner-btn">
+            <i class="fa-solid fa-arrow-right"></i> Acessar vitrine
+          </a>
         </div>
       </div>
     </div>
